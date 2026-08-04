@@ -82295,8 +82295,8 @@ $0(){A.e5(this.a,!1).jj(!0)},
 $S:0}
 A.ajA.prototype={
 $0(){var s=this.a,r=this.b
-s.d=r.Aa(0,"name","Diego")
-s.e=r.Aa(0,"weight","170")},
+s.d=r.Aa(0,"name","Your Name")
+s.e=r.Aa(0,"weight","0")},
 $S:0}
 A.ajB.prototype={
 $0(){this.a.f=A.he(this.b,!0,t.sK)},
@@ -82322,9 +82322,11 @@ return A.S(null,r)}})
 return A.T($async$$0,r)},
 $S:10}
 A.ajx.prototype={
-$0(){var s=this.a
-s.d=this.b.a.a
-s.e=this.c.a.a},
+$0(){var s=this.b.a.a,r=this.a
+if(s.length===0)r.d="Your Name"
+else r.d=s
+r.d=s
+r.e=this.c.a.a},
 $S:0}
 A.ajs.prototype={
 $0(){var s=0,r=A.U(t.H),q=this,p,o
