@@ -173,8 +173,8 @@ Future<bool> confirmDelete(BuildContext context, String name) async {
   var box = Hive.box('profile');
 
   setState(() {
-    name = box.get('name', defaultValue: 'Diego');
-    weight = box.get('weight', defaultValue: '170');
+    name = box.get('name', defaultValue: 'Your Name');
+    weight = box.get('weight', defaultValue: '0');
   });
 }
 void loadWorkouts() {
@@ -259,6 +259,13 @@ void loadWorkouts() {
               onPressed: () async {
 
                 setState(() {
+
+                  if (nameController.text.isEmpty) {
+  name = "Your Name";
+} else {
+  name = nameController.text;
+}
+
                   name = nameController.text;
                   weight = weightController.text;
                 });
