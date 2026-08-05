@@ -5,7 +5,7 @@ part 'muscle_group.g.dart';
 
 
 @HiveType(typeId: 1)
-class MuscleGroup {
+class MuscleGroup extends HiveObject {
 
   @HiveField(0)
   String name;
@@ -15,11 +15,17 @@ class MuscleGroup {
   List<Exercise> exercises;
 
 
+  @HiveField(2)
+  bool isDeleted;
+
+
   MuscleGroup({
 
     required this.name,
 
     required this.exercises,
+
+    this.isDeleted = false,
 
   });
 

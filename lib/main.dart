@@ -7,6 +7,7 @@ import 'screens/workout_screen.dart';
 
 import 'models/exercise.dart';
 import 'models/muscle_group.dart';
+import 'screens/edit_workout_screen.dart';
 
 
 void main() async {
@@ -27,7 +28,13 @@ void main() async {
 
   await Hive.openBox('profile');
 
+  await Hive.openBox('muscleGroups');
+
   await Hive.openBox('workouts');
+
+  await Hive.openBox('customMuscleGroups');
+
+  await Hive.openBox('customExercises');
 
 
   runApp(const GymTrackerApp());
@@ -240,7 +247,9 @@ void loadWorkouts() {
 
                 controller: weightController,
 
-                keyboardType: TextInputType.number,
+                keyboardType: const TextInputType.numberWithOptions(
+  decimal: true,
+),
 
                 decoration: const InputDecoration(
                   labelText: "Weight (lbs)",
@@ -600,43 +609,100 @@ void loadWorkouts() {
         ),
 
 
-        IconButton(
+        Row(
 
-          icon: const Icon(
+  children: [
 
-            Icons.delete,
+    IconButton(
 
-            color: Colors.red,
+      icon: const Icon(
+        Icons.edit,
+        color: Colors.green,
+      ),
+
+
+      onPressed: () async {
+
+        final updatedWorkout = await Navigator.push(
+
+          context,
+
+          MaterialPageRoute(
+
+            builder: (context) => EditWorkoutScreen(
+
+              workout: workout,
+
+            ),
 
           ),
 
-          onPressed: () async {
-
-  bool confirm = await confirmDelete(
-
-    context,
-
-    workout.name,
-
-  );
+        );
 
 
-  if (confirm) {
+        if (updatedWorkout != null) {
 
-    setState(() {
+          setState(() {
 
-      workouts.remove(workout);
+            int index = workouts.indexOf(workout);
 
-    });
+            workouts[index] = updatedWorkout;
+
+          });
 
 
-    saveWorkouts();
+          saveWorkouts();
 
-  }
+        }
 
-},
+      },
 
-        ),
+    ),
+
+
+
+    IconButton(
+
+      icon: const Icon(
+
+        Icons.delete,
+
+        color: Colors.red,
+
+      ),
+
+
+      onPressed: () async {
+
+        bool confirm = await confirmDelete(
+
+          context,
+
+          workout.name,
+
+        );
+
+
+        if (confirm) {
+
+          setState(() {
+
+            workouts.remove(workout);
+
+          });
+
+
+          saveWorkouts();
+
+        }
+
+      },
+
+    ),
+
+  ],
+
+),
 
       ],
 

@@ -308,9 +308,11 @@ ListTile(
 
       builder: (context) => ExerciseSetupScreen(
 
-        exerciseName: selectedExercise,
+  exerciseName: selectedExercise,
 
-      ),
+  muscleGroup: muscle.name,
+
+),
 
     ),
 

@@ -125,7 +125,9 @@ class _EditExerciseScreenState
 
               controller: weightController,
 
-              keyboardType: TextInputType.number,
+              keyboardType: const TextInputType.numberWithOptions(
+  decimal: true,
+),
 
               decoration: const InputDecoration(
 

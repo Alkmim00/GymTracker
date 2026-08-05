@@ -6,14 +6,18 @@ class ExerciseSetupScreen extends StatefulWidget {
 
   final String exerciseName;
 
+  final String muscleGroup;
 
-  const ExerciseSetupScreen({
 
-    super.key,
+const ExerciseSetupScreen({
 
-    required this.exerciseName,
+  super.key,
 
-  });
+  required this.exerciseName,
+
+  required this.muscleGroup,
+
+});
 
 
   @override
@@ -57,6 +61,8 @@ class _ExerciseSetupScreenState
 
       ],
 
+      muscleGroup: widget.muscleGroup,
+
     );
 
 
@@ -98,7 +104,9 @@ class _ExerciseSetupScreenState
 
               controller: weightController,
 
-              keyboardType: TextInputType.number,
+              keyboardType: const TextInputType.numberWithOptions(
+  decimal: true,
+),
 
               decoration: const InputDecoration(
 
